@@ -182,11 +182,32 @@ var casTicket = function (req, token, callback) {
       'no matching login attempt found');
   }
 
+  //****Original, Truby Changed*********************************//
   var result = _retrieveCredential(options.cas.credentialToken);
-  var options = { profile: { name: result.id } };
-  var user = Accounts.updateOrCreateUserFromExternalService("cas", result, options);
+  //var options = { profile: { name: result.id } };
+  //var user = Accounts.updateOrCreateUserFromExternalService("cas", result, options);
+  //***************end of truby changed*************************//
 
-  return user;
+   var user = Meteor.users.findOne({'username':result.id});
+   if(!user) {
+       debugLog('saml_server.js','193','Could not find an existing user with supplied username',true);
+       throw new Error("Could not find an existing user with supplied username " + loginResult.profile.email);
+   }
+
+   var stampedToken = Accounts._generateStampedLoginToken();
+   var hashStampedToken = Accounts._hashStampedToken(stampedToken);
+
+   Meteor.users.update(user,
+       {$push: {'services.resume.loginTokens': hashStampedToken}}
+   );
+
+   debugLog('saml_server.js','204','registerLoginHandler user._id, stampedToken: ' + user._id +',' + stampedToken.token,false);
+
+     //sending token along with the userId
+   return {
+       userId: user._id,
+       token: stampedToken.token
+   };
 });
 
 var _hasCredential = function(credentialToken) {

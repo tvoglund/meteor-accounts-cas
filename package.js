@@ -1,6 +1,6 @@
 Package.describe({
   name: 'tvoglund:meteor-accounts-cas',
-  version: '0.0.1',
+  version: '0.0.2',
   // Brief, one-line summary of the package.
   summary: 'CAS support for accounts',
   // URL to the Git repository containing the source code for this package.
@@ -11,7 +11,7 @@ Package.describe({
 });
 
 Package.onUse(function(api) {
-  api.versionsFrom('1.2.0.2');
+    api.versionsFrom('METEOR@1.1.0.2');
   api.use('routepolicy', 'server');
   api.use('webapp', 'server');
   api.use('accounts-base', ['client', 'server']);
