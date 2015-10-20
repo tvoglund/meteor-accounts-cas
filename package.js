@@ -1,6 +1,6 @@
 Package.describe({
   name: 'tvoglund:meteor-accounts-cas',
-  version: '0.0.6',
+  version: '0.0.7',
   // Brief, one-line summary of the package.
   summary: 'CAS support for accounts',
   // URL to the Git repository containing the source code for this package.

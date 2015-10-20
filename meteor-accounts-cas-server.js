@@ -233,7 +233,7 @@ var debugLog = function(file, line, message, isError){
 // code to run on server at startup
     if(Meteor.settings) {
         if(Meteor.settings['public']) {
-            bDebug = Meteor.settings.cas.debug == "true";
+            bDebug = Meteor.settings.cas.debug == true;
         }
     }
 

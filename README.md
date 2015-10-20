@@ -19,7 +19,7 @@ Please see link above for most details, the few items this package has changed i
     }
   },
   "cas": {
-    "debug": "true",
+    "debug": true,
     "baseUrl": "https://someServer:443/cas-server-webapp-4.0.4/",
     "autoClose": true
   }
