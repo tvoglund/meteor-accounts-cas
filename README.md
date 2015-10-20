@@ -4,7 +4,7 @@ Authentication for meteor using CAS.  Please see https://atmospherejs.com/atoy40
 
 ## Details
 
-Please see link above for most details, the few items this package has changed is described below.
+Please see link above for most details, the few items this package has changed is described below.  When the client calls Meteor.loginWithCas, if there is an error, the callback will have a Meteor.Error.  If the reason of this error is userDoesNotExist, then the user was not found in the database, but was in the LDAP server.
 
 #### sample settings.json file
 

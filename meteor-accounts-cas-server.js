@@ -161,7 +161,7 @@ var casTicket = function (req, token, callback) {
   });
   /**********************END of my stuff***************************/
 
-  return; 
+  return;
 };
 
 /*
@@ -190,8 +190,8 @@ var casTicket = function (req, token, callback) {
 
    var user = Meteor.users.findOne({'username':result.id});
    if(!user) {
-       debugLog('saml_server.js','193','Could not find an existing user with supplied username',true);
-       throw new Error("Could not find an existing user with supplied username " + loginResult.profile.email);
+       debugLog('saml_server.js','193','Could not find an existing user with supplied username ' + result.id,true);
+       throw new Meteor.Error("Could not find an existing user with supplied username", "user has not been created in tuapath", "userDoesNotExist");
    }
 
    var stampedToken = Accounts._generateStampedLoginToken();
@@ -203,7 +203,7 @@ var casTicket = function (req, token, callback) {
 
    debugLog('saml_server.js','204','registerLoginHandler user._id, stampedToken: ' + user._id +',' + stampedToken.token,false);
 
-     //sending token along with the userId
+   //sending token along with the userId
    return {
        userId: user._id,
        token: stampedToken.token
@@ -262,4 +262,3 @@ var debugLog = function(file, line, message, isError){
             }
         }
 }
-
